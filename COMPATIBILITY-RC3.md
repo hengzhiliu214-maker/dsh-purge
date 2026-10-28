@@ -12,5 +12,7 @@ A file-only experiment against a separately extracted copy of that installation 
 
 Changes here:
 - Avoid writing pnpm build approvals for a bundle that contains no postinstall. The supplied offline bundle has no postinstall; automatically adding URL-based approvals on startup risks breaking the profile. Bundles that do contain a postinstall retain upstream behavior.
+- Replace a fresh profile’s empty YAML list before inserting the plugin. The upstream and supplied registration implementations otherwise append entries after `[]`, producing invalid YAML and stopping desktop startup.
+- Ignore hidden metadata files when installing bundled Markdown skills. macOS archive creation can otherwise turn AppleDouble files into apparent skills.
 
 The official desktop contains a sealed app.asar; do not run patch application against an active installation during this investigation. Existing profiles, credentials, conversations and host files must not be copied into public artifacts.
