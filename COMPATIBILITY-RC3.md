@@ -17,4 +17,6 @@ Changes here:
 - Add an offline registration command that uses the corrected profile insertion logic and does not alter pnpm build approvals.
 - Respect an explicit DSH_HOME when installing bundled skills. Upstream also synchronizes to the operating system home; that can write into a real profile from an isolated test. This change addresses the skill sync only; other host discovery and patch application paths have not been proven isolated.
 
-The official desktop contains a sealed app.asar; do not run patch application against an active installation during this investigation. Existing profiles, credentials, conversations and host files must not be copied into public artifacts.
+The v5 offline bundle was started in an isolated macOS desktop running rc.3: its panel opened, 23 bundled skills were installed, and an actual model conversation and read-tool call succeeded. A separate canary test verified that skill installation with an explicit DSH_HOME did not write to a different home. These checks cover plugin loading and basic use, not the outcome of every host patch or other versions.
+
+The official desktop may contain a sealed app.asar; do not run patch application against an active installation during this investigation. Existing profiles, credentials, conversations and host files must not be copied into public artifacts.
