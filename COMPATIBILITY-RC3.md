@@ -15,5 +15,6 @@ Changes here:
 - Replace a fresh profile’s empty YAML list before inserting the plugin. The upstream and supplied registration implementations otherwise append entries after `[]`, producing invalid YAML and stopping desktop startup.
 - Ignore hidden metadata files when installing bundled Markdown skills. macOS archive creation can otherwise turn AppleDouble files into apparent skills.
 - Add an offline registration command that uses the corrected profile insertion logic and does not alter pnpm build approvals.
+- Respect an explicit DSH_HOME when installing bundled skills. Upstream also synchronizes to the operating system home; that can write into a real profile from an isolated test. This change addresses the skill sync only; other host discovery and patch application paths have not been proven isolated.
 
 The official desktop contains a sealed app.asar; do not run patch application against an active installation during this investigation. Existing profiles, credentials, conversations and host files must not be copied into public artifacts.
